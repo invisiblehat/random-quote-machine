@@ -1,0 +1,61 @@
+/*jshint esversion: 6 */
+
+const btn = document.getElementById('loadQuote');
+const quote = document.getElementById('quote');
+const auth = document.getElementById('author');
+const tweet = document.getElementById('tweet');
+
+let authAnim = 'fadeIn';
+const animations = ["bounce", "flash", "pulse", "rubberBand", "shake", "headShake", "swing", "tada", "wobble", "jello", "bounceIn", "bounceInDown", "bounceInLeft", "bounceInRight", "bounceInUp", "fadeIn", "fadeInDown", "fadeInDownBig", "fadeInLeft", "fadeInLeftBig", "fadeInRight", "fadeInRightBig", "fadeInUp", "fadeInUpBig", "flipInX", "flipInY", "lightSpeedIn", "rotateIn", "rotateInDownLeft", "rotateInDownRight", "rotateInUpLeft", "rotateInUpRight", "rollIn", "zoomIn", "zoomInDown", "zoomInLeft", "zoomInRight", "zoomInUp", "slideInDown", "slideInLeft", "slideInRight", "slideInUp"];
+
+const colors = ["turquoise", "emerland", "peterriver", "amethyst", "greensea", "nephritis", "belizehole", "wisteria", "sunflower", "carrot", "alizarin", "pumpkin", "pomegranate"];
+
+btn.addEventListener('click', () => {
+  getQuote();
+});
+
+tweet.addEventListener('click', (e) => {
+  window.open(e.srcElement.attributes.href.textContent, 'Share', 'width=550, height=400, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0');
+  e.preventDefault();
+});
+
+const getQuote = () => {
+  var xhr = new XMLHttpRequest();
+  let anim = animations[Math.floor(Math.random() * animations.length)];
+  let color = colors[Math.floor(Math.random() * colors.length)];
+
+  xhr.open('POST', 'https://andruxnet-random-famous-quotes.p.mashape.com/cat=famous');
+
+  xhr.setRequestHeader('X-Mashape-Key', 'iVxJytjTo0mshNG5fPf72lf0KhRKp1VY5itjsnwqyNJjSniapR');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.setRequestHeader('Accept', 'application/json');
+
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+
+      let rex = JSON.parse(xhr.responseText);
+
+      quote.className = 'animated ' + anim + ' ' + color;
+      quote.innerHTML = rex.quote;
+      auth.className = 'concrete animated ' + authAnim;
+      auth.textContent = '- ' + rex.author;
+
+      if (authAnim == 'fadeIn') {
+        authAnim = 'bounceIn';
+      } else {
+        authAnim = 'fadeIn';
+      }
+
+      tweet.href = 'https://twitter.com/intent/tweet?text=\"' + encodeURIComponent(rex.quote) + '\" - ' + rex.author + '&related=joelblackbeatty';
+
+    } else {
+
+      console.log(xhr.status + ' ' + xhr.statusText);
+
+    }
+  };
+
+  xhr.send(null);
+};
+
+getQuote();

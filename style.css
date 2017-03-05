@@ -1,0 +1,64 @@
+
+
+body{
+  position: relative;
+  background-color: #212121;
+}
+.cont {
+  padding:20px;
+  position: absolute;
+  top: 40vh;
+  left: 50vw;
+  margin-top:-20vh;
+  margin-left:-20vw;
+  width:40vw;
+  min-height:50vh;
+}
+
+#tweet{
+  float:right;
+  margin-bottom:20px
+}
+
+#quote{
+  font-size:3rem;
+  float:left;
+  clear:both;
+}
+
+#author{
+  font-size:2.5rem;
+  float:right;
+  clear:both;
+}
+
+button.btn{
+  position:absolute;
+  top:20px;
+  right:20px;
+  font-size:1.8rem;
+  padding:20px 40px;
+}
+
+.twitter-share-button{
+  float:right;
+}
+
+.turquoise { color: #1abc9c;}
+.emerland { color: #2ecc71;}
+.peterriver { color: #3498db;}
+.amethyst { color: #9b59b6;}
+.greensea { color: #16a085;}
+.nephritis { color: #27ae60;}
+.belizehole { color: #2980b9;}
+.wisteria { color: #8e44ad;}
+.midnightblue { color: #2c3e50;}
+.sunflower { color: #f1c40f;}
+.carrot { color: #e67e22;}
+.alizarin { color: #e74c3c;}
+.clouds { color: #ecf0f1;}
+.concrete { color: #95a5a6;}
+.orange { color: #f39c12;}
+.pumpkin { color: #d35400;}
+.pomegranate { color: #c0392b;}
+.silver { color: #bdc3c7;}
